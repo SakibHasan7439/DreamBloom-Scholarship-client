@@ -1,8 +1,13 @@
+import { Outlet } from "react-router-dom";
+import Navbar from "../SharedComponents/Navbar/Navbar";
 
 const MainLayout = () => {
     return (
         <div>
-            <h2>Main layouts</h2>            
+              <div className="bg-blue-300 p-2">
+                <Navbar></Navbar>
+              </div>
+              <Outlet></Outlet>         
         </div>
     );
 };
