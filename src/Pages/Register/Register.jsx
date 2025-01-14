@@ -1,12 +1,15 @@
 import Lottie from "lottie-react";
 import registerLottie from "../../assets/registerLottie.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import UseAuth from "../../hooks/UseAuth";
+import toast from "react-hot-toast";
 
 const Register = () => {
+    // eslint-disable-next-line no-unused-vars
     const { registerNewUser, googleSign } = UseAuth();
+    const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }} = useForm();
     const onSubmit = async(value) => {
 
@@ -16,12 +19,16 @@ const Register = () => {
         console.log(value.email, value.password);
         const {data} = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData);
 
+        // eslint-disable-next-line no-unused-vars
         const image_url = data.data.display_url;
 
         registerNewUser(value.email, value.password)
-        .then(result =>{
-            const loggedUser = result.user;
-            console.log(loggedUser);
+        .then(() =>{
+            toast.success("registered successful");
+            navigate('/');
+        })
+        .catch((error) =>{
+            toast.error(error.message);
         })
     };
 
