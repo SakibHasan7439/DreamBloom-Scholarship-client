@@ -3,14 +3,14 @@ import registerLottie from "../../assets/registerLottie.json";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import toast from "react-hot-toast";
+import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 
 
 const Login = () => {
-    // eslint-disable-next-line no-unused-vars
-    const { signinUser, googleSignIn } = UseAuth();
-
+    const { signinUser, googleSign } = UseAuth();
     const location = useLocation();
     const navigate = useNavigate();
+    const axiosPublic = UseAxiosPublic();
     const from = location.state?.from?.pathName || "/";
 
     const handleSignIn = (e) =>{
@@ -30,12 +30,31 @@ const Login = () => {
         })
     } 
 
+    const handleGoogleSign = () =>{
+        googleSign()
+        .then((result) =>{
+            const userInfo = {
+                name: result.user?.displayName,
+                email: result.user?.email
+            };
+
+            axiosPublic.post("/users", userInfo)
+            .then(() =>{
+                toast.success("successfully registered");
+                navigate("/");
+            })
+        })
+        .catch((error) =>{
+            toast.error(error.message);
+        })
+    }
+
   return (
     <div className="max-w-7xl w-full mx-auto">
       <div className="flex flex-col md:flex-row items-center gap-4 justify-between">
         <form onSubmit={handleSignIn} className="card-body p-4 lg:p-16 w-1/2">
           <div className="w-[90%] mx-auto mb-6">
-            <button className="btn w-full bg-[#93c5fd]">
+            <button onClick={handleGoogleSign} className="btn w-full bg-[#93c5fd]">
               Signin with Google
             </button>
           </div>

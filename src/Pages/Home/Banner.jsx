@@ -11,7 +11,7 @@ import slider3 from "../../assets/slider1.jpg";
 
 const Banner = () => {
   return (
-    <div>
+    <div className="mb-8 md:mb-20">
       <Swiper
         // install Swiper modules
         spaceBetween={30}

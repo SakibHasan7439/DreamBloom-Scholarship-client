@@ -5,12 +5,13 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import UseAuth from "../../hooks/UseAuth";
 import toast from "react-hot-toast";
+import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 
 const Register = () => {
-    // eslint-disable-next-line no-unused-vars
-    const { registerNewUser, googleSign } = UseAuth();
+    const { registerNewUser, googleSign, updateUserProf } = UseAuth();
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors }} = useForm();
+    const axiosPublic = UseAxiosPublic();
+    const { register, handleSubmit, reset, formState: { errors }} = useForm();
     const onSubmit = async(value) => {
 
         const image = value.image[0];
@@ -18,26 +19,57 @@ const Register = () => {
         formData.append('image', image);
         console.log(value.email, value.password);
         const {data} = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`, formData);
-
-        // eslint-disable-next-line no-unused-vars
         const image_url = data.data.display_url;
 
         registerNewUser(value.email, value.password)
         .then(() =>{
-            toast.success("registered successful");
-            navigate('/');
+            updateUserProf(value.name, image_url)
+            .then(()=>{
+                const userInfo = {
+                    name: value.name,
+                    email: value.email
+                };
+                
+                axiosPublic.post("/users", userInfo)
+                .then((res) =>{
+                    if(res.data.insertedId){
+                        toast.success("registered successful");
+                        navigate('/');
+                        reset();
+                    }
+                })
+            })
         })
         .catch((error) =>{
             toast.error(error.message);
         })
     };
 
+    const handleGoogleSign = () =>{
+        googleSign()
+        .then((result) =>{
+            const userInfo = {
+                name: result.user?.displayName,
+                email: result.user?.email
+            };
+
+            axiosPublic.post("/users", userInfo)
+            .then(() =>{
+                toast.success("successfully registered");
+                navigate("/");
+            })
+        })
+        .catch((error) =>{
+            toast.error(error.message);
+        })
+    }
+
   return (
     <div className="max-w-7xl w-full mx-auto">
         <div className="flex flex-col md:flex-row items-center gap-4 justify-between">
             <div className="lg:p-16 md:w-1/2 p-4">
             <div className="w-[90%] mx-auto mb-6">
-                <button className="btn w-full bg-[#93c5fd]">Signup with Google</button>
+                <button onClick={handleGoogleSign} className="btn w-full bg-[#93c5fd]">Signup with Google</button>
             </div>
             <p className="text-center">Or</p>
             <h3 className="text-center text-xl md:text-2xl font-semibold">Register with email</h3>
