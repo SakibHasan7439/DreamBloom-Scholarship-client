@@ -39,7 +39,7 @@ const Routes = createBrowserRouter([
 
     // VIP admin route
     {
-      path: "dashboard",
+      path: "/dashboard",
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     //incomplete...
       errorElement: <h2>page not found</h2>,
