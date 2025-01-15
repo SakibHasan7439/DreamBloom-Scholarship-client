@@ -12,6 +12,7 @@ import ManageScholarShip from "../Dashboard/ManageScholarShip/ManageScholarShip"
 import ManageReview from "../Dashboard/ManageReview/ManageReview";
 import ManageUser from "../Dashboard/ManageUser/ManageUser";
 import AllScholarShip from "../Pages/AllScholarShip/AllScholarShip";
+import ScholarShipDetails from "../Pages/AllScholarShip/ScholarShipDetails/ScholarShipDetails";
 
 const Routes = createBrowserRouter([
     {
@@ -29,6 +30,11 @@ const Routes = createBrowserRouter([
             {
                 path: "/allScholarships",
                 element: <AllScholarShip></AllScholarShip>
+            },
+
+            {
+                path: "/scholarship/:id",
+                element: <PrivateRoute><ScholarShipDetails></ScholarShipDetails></PrivateRoute>
             },
 
             {

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 const ScholarshipCard = ({ scholarship }) => {
     const {
@@ -10,6 +12,7 @@ const ScholarshipCard = ({ scholarship }) => {
         applicationDeadline,
         degree,
         subjectCategory,
+        _id
         } = scholarship;
 
   return (
@@ -31,7 +34,7 @@ const ScholarshipCard = ({ scholarship }) => {
           <div className="badge badge-outline">{scholarshipCategory}</div>
           <p><strong>Application Fee: </strong>${applicationFees}</p>
           <p><strong>Application Deadline: </strong>{applicationDeadline}</p>
-          <button className="bg-[#93c5fd] font-semibold px-3 py-2 rounded-lg transition-all hover:bg-[#588fcd]">View Details</button>
+          <Link to={`/scholarship/${_id}`} className="bg-[#93c5fd] font-semibold px-3 py-2 rounded-lg transition-all hover:bg-[#588fcd]">View Details</Link>
         </div>
       </div>
     </div>
