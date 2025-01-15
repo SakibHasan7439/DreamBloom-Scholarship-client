@@ -13,13 +13,13 @@ import ManageReview from "../Dashboard/ManageReview/ManageReview";
 import ManageUser from "../Dashboard/ManageUser/ManageUser";
 import AllScholarShip from "../Pages/AllScholarShip/AllScholarShip";
 import ScholarShipDetails from "../Pages/AllScholarShip/ScholarShipDetails/ScholarShipDetails";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const Routes = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        //incomplete...
-        errorElement: <h2>No page found</h2>,
+        errorElement: <ErrorPage></ErrorPage>,
 
         children: [
             {
@@ -53,8 +53,7 @@ const Routes = createBrowserRouter([
     {
       path: "/dashboard",
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-    //incomplete...
-      errorElement: <h2>page not found</h2>,
+      errorElement: <ErrorPage></ErrorPage>,
 
       children: [
         {
