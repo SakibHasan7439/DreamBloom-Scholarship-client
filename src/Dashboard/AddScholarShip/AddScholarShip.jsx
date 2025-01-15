@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const AddScholarShip = () => {
     const { user } = UseAuth();
-    const { register, handleSubmit} = useForm();
+    const { register, handleSubmit, reset} = useForm();
     const axiosSecure = UseAxiosSecure();
 
     const onSubmit = async(data) => {
@@ -38,6 +38,7 @@ const AddScholarShip = () => {
             }
             const scholarshipResponse = await axiosSecure.post('/scholarships', scholarshipData);
             if(scholarshipResponse.data.insertedId) {
+                reset();
                 Swal.fire({
                     title: "Successful",
                     text: "Data stored Successful",

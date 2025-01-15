@@ -78,8 +78,8 @@ const ManageUser = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                    <select onChange={(e)=>handleUserRoleChange(user._id, e.target.value)} defaultValue={"default"} value={user.role} className="select outline-none w-full max-w-xs">
-                      <option value={"default"}>user</option>
+                    <select onChange={(e)=>handleUserRoleChange(user._id, e.target.value)} value={user.role} className="select outline-none w-full max-w-xs">
+                      <option>user</option>
                       <option>Moderator</option>
                       <option>Admin</option>
                     </select>

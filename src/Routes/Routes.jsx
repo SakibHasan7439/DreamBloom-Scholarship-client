@@ -11,6 +11,7 @@ import ManageApplication from "../Dashboard/ManageApplication/ManageApplication"
 import ManageScholarShip from "../Dashboard/ManageScholarShip/ManageScholarShip";
 import ManageReview from "../Dashboard/ManageReview/ManageReview";
 import ManageUser from "../Dashboard/ManageUser/ManageUser";
+import AllScholarShip from "../Pages/AllScholarShip/AllScholarShip";
 
 const Routes = createBrowserRouter([
     {
@@ -23,6 +24,11 @@ const Routes = createBrowserRouter([
             {
                 path: "/",
                 element: <Home></Home>
+            },
+
+            {
+                path: "/allScholarships",
+                element: <AllScholarShip></AllScholarShip>
             },
 
             {
