@@ -14,12 +14,19 @@ const Dashboard = () => {
                         <li><NavLink to={"/dashboard/manageApplication"}>Manage Applied Application</NavLink></li>
                         <li><NavLink to={"/dashboard/manageUsers"}>Manage Users</NavLink></li>
                         <li><NavLink to={"/dashboard/manageReview"}>Manage Review</NavLink></li>
+
+                        <div className="divider"></div>
+                        <li><NavLink to={"/"}>Home</NavLink></li>
+                        <li><NavLink to={"/allScholarship"}>Manage Review</NavLink></li>
                     </ul>
 
                     : <ul className="flex flex-col gap-4">
                         <li><NavLink to={"/dashboard/myProfile"}>My Profile</NavLink></li>
                         <li><NavLink to={"/dashboard/myApplication"}>My Application</NavLink></li>
                         <li><NavLink to={"/dashboard/myReview"}>My Review</NavLink></li>
+                        <div className="divider"></div>
+                        <li><NavLink to={"/"}>Home</NavLink></li>
+                        <li><NavLink to={"/allScholarship"}>Manage Review</NavLink></li>
                     </ul>
                 }
             </div>
