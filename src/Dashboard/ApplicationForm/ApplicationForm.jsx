@@ -1,13 +1,66 @@
-// eslint-disable-next-line react/prop-types
-const ApplicationForm = ({isHidden, scholarshipInfo}) => {
-    const {universityName, 
-        scholarshipCategory, 
-        subjectCategory, id} = scholarshipInfo;
+import axios from "axios";
+import UseAuth from "../../hooks/UseAuth";
+import { useForm } from "react-hook-form";
+import UseAxiosSecure from "../../hooks/UseAxiosSecure";
+import Swal from "sweetalert2";
 
+/* eslint-disable react/prop-types */
+const ApplicationForm = ({ isHidden, scholarshipInfo }) => {
+  const { user } = UseAuth();
+  const { universityName, scholarshipCategory, subjectCategory, id } =
+    scholarshipInfo;
+
+  const axiosSecure = UseAxiosSecure();
+  const { register, handleSubmit, reset } = useForm();
+  const onSubmit = async (data) => {
+    const imageFile = { image: data.image[0] };
+    const res = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      imageFile,
+      {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      }
+    );
+    if (res.data.success) {
+      const applicantInfo = {
+        address: data.address,
+        degree: data.degree,
+        gender: data.gender,
+        sscResult: data.sscResult,
+        hscResult: data.hscResult,
+        image: res.data.data.display_url,
+        phoneNumber: data.phoneNumber,
+        applicantName: user?.displayName,
+        applicantEmail: user?.email,
+        scholarshipId: id,
+        date: new Date(),
+      };
+
+      const applicationResponse = await axiosSecure.post("/applications",applicantInfo
+      );
+      if (applicationResponse.data.insertedId) {
+        reset();
+        Swal.fire({
+          title: "Successful",
+          text: "Application Successful",
+          icon: "success",
+        });
+      }
+    }
+  };
 
   return (
-    <div className={`${isHidden ? "hidden": "block"} my-10 mx-auto max-w-[512px]`}>
-      <form className="w-full max-w-lg bg-white shadow-lg rounded-lg p-6">
+    <div
+      className={`${isHidden ? "hidden" : "block"} my-10 mx-auto max-w-[512px]`}
+    >
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-lg bg-white shadow-lg rounded-lg p-6"
+      >
         <h2 className="text-2xl font-bold text-center mb-6">
           Application Form
         </h2>
@@ -20,6 +73,7 @@ const ApplicationForm = ({isHidden, scholarshipInfo}) => {
           <input
             type="tel"
             id="phone"
+            {...register("phoneNumber")}
             placeholder="Enter phone number"
             className="input input-bordered w-full"
           />
@@ -34,6 +88,7 @@ const ApplicationForm = ({isHidden, scholarshipInfo}) => {
             type="file"
             id="photo"
             accept="image/*"
+            {...register("image", { required: true })}
             className="file-input file-input-bordered w-full"
           />
         </div>
@@ -45,6 +100,7 @@ const ApplicationForm = ({isHidden, scholarshipInfo}) => {
           </label>
           <textarea
             id="address"
+            {...register("address")}
             placeholder="Enter village, district, country"
             className="textarea textarea-bordered w-full"
           ></textarea>
@@ -55,8 +111,13 @@ const ApplicationForm = ({isHidden, scholarshipInfo}) => {
           <label className="block text-sm font-medium mb-1" htmlFor="gender">
             Applicant Gender
           </label>
-          <select id="gender" className="select select-bordered w-full">
-            <option disabled selected>
+          <select
+            defaultValue={"default"}
+            {...register("gender")}
+            id="gender"
+            className="select select-bordered w-full"
+          >
+            <option disabled value={"default"}>
               Select gender
             </option>
             <option>Male</option>
@@ -70,8 +131,13 @@ const ApplicationForm = ({isHidden, scholarshipInfo}) => {
           <label className="block text-sm font-medium mb-1" htmlFor="degree">
             Applying Degree
           </label>
-          <select id="degree" className="select select-bordered w-full">
-            <option disabled selected>
+          <select
+            {...register("degree")}
+            defaultValue={"default"}
+            id="degree"
+            className="select select-bordered w-full"
+          >
+            <option disabled value={"default"}>
               Select degree
             </option>
             <option>Diploma</option>
@@ -88,6 +154,7 @@ const ApplicationForm = ({isHidden, scholarshipInfo}) => {
           <input
             type="text"
             id="ssc"
+            {...register("sscResult")}
             placeholder="Enter SSC result"
             className="input input-bordered w-full"
           />
@@ -101,6 +168,7 @@ const ApplicationForm = ({isHidden, scholarshipInfo}) => {
           <input
             type="text"
             id="hsc"
+            {...register("hscResult")}
             placeholder="Enter HSC result"
             className="input input-bordered w-full"
           />
@@ -111,8 +179,13 @@ const ApplicationForm = ({isHidden, scholarshipInfo}) => {
           <label className="block text-sm font-medium mb-1" htmlFor="gap">
             Study Gap (if any)
           </label>
-          <select id="gap" className="select select-bordered w-full">
-            <option disabled selected>
+          <select
+            defaultValue={"default"}
+            {...register("studyGap")}
+            id="gap"
+            className="select select-bordered w-full"
+          >
+            <option disabled value={"default"}>
               Select gap duration
             </option>
             <option>1 Year</option>
