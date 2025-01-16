@@ -14,6 +14,7 @@ import ManageUser from "../Dashboard/ManageUser/ManageUser";
 import AllScholarShip from "../Pages/AllScholarShip/AllScholarShip";
 import ScholarShipDetails from "../Pages/AllScholarShip/ScholarShipDetails/ScholarShipDetails";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Payment from "../Dashboard/Payment/Payment";
 
 const Routes = createBrowserRouter([
     {
@@ -35,6 +36,11 @@ const Routes = createBrowserRouter([
             {
                 path: "/scholarship/:id",
                 element: <PrivateRoute><ScholarShipDetails></ScholarShipDetails></PrivateRoute>
+            },
+
+            {
+                path: "/payment",
+                element: <PrivateRoute><Payment></Payment></PrivateRoute>
             },
 
             {

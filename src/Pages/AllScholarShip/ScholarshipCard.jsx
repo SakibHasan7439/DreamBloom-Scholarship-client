@@ -16,7 +16,7 @@ const ScholarshipCard = ({ scholarship }) => {
         } = scholarship;
 
   return (
-    <div className="card bg-[#93c4fd2f] rounded-md col-span-12 md:col-span-6 lg:col-span-3">
+    <div className="card bg-[#93c4fd2f] h-[490px] rounded-md col-span-12 md:col-span-6 lg:col-span-3">
       <figure>
         <img className="h-[230px] w-full"
           src={image}

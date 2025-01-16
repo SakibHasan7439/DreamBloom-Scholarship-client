@@ -34,6 +34,15 @@ const ScholarShipDetails = () => {
     universityWorldRank,
   } = details;
 
+  const scholarshipInfo = {
+    universityName: universityName,
+    scholarshipCategory: scholarshipCategory,
+    subjectCategory: subjectCategory,
+    applicationFees: applicationFees,
+    id: id
+  };
+  console.log(scholarshipInfo);
+
   return (
     <div className="max-w-7xl w-full mx-auto">
       <div className="min-h-screen bg-[#93c4fd33] p-6">
@@ -111,7 +120,12 @@ const ScholarShipDetails = () => {
             </ul>
           </div>
           <div className="text-center">
-                <Link className="px-4 font-semibold hover:bg-[#4376b0] py-2 rounded-lg md:px-6 md:py-3 bg-[#93c4fd] shadow-md shadow-black hover:text-white transition-all">Apply Now</Link>
+            {
+              universityName &&
+              scholarshipCategory &&
+              subjectCategory &&
+                <Link to={"/payment"} state={scholarshipInfo} className="px-4 font-semibold hover:bg-[#4376b0] py-2 rounded-lg md:px-6 md:py-3 bg-[#93c4fd] shadow-md shadow-black hover:text-white transition-all">Apply Now</Link>
+            }
           </div>
           </div>
         </div>

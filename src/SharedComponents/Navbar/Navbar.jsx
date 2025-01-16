@@ -2,18 +2,20 @@ import { Link, NavLink } from "react-router-dom";
 import websiteLogo from "../../assets/websiteLogo.png";
 import UseAuth from "../../hooks/UseAuth";
 import toast from "react-hot-toast";
+// import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
-  const handleSignOut = () =>{
+  // const role = useRole();
+  const handleSignOut = () => {
     signOutUser()
-    .then(() =>{
+      .then(() => {
         toast.success("successfully signout");
-    })
-    .catch((error) =>{
+      })
+      .catch((error) => {
         toast.error(error.message);
-    })
-  }
+      });
+  };
 
   return (
     <div className="bg-[#93c5fd] sticky top-0 z-50">
@@ -48,6 +50,11 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink to={"/dashboard"}>User Dashboard</NavLink>
+                {/* {
+                  role === "moderator" ? <NavLink to={"/dashboard/moderatorDashboard"}>Moderator Dashboard</NavLink>
+                  : role === "admin" ? <NavLink to={"/dashboard/adminDashboard"}>Admin Dashboard</NavLink>
+                  : <NavLink to={"/dashboard/userDashboard"}>User Dashboard</NavLink>
+                } */}
               </li>
             </ul>
           </div>
@@ -64,13 +71,27 @@ const Navbar = () => {
               <NavLink to={"/allScholarships"}>All Scholarship</NavLink>
             </li>
             <li>
-              <NavLink to={"/dashboard"}>User Dashboard</NavLink>
+            <NavLink to={"/dashboard"}>User Dashboard</NavLink>
+            {/* {
+                  role[0] === "moderator" ? <NavLink to={"/dashboard/moderatorDashboard"}>Moderator Dashboard</NavLink>
+                  : role[0] === "admin" ? <NavLink to={"/dashboard/adminDashboard"}>Admin Dashboard</NavLink>
+                  : <NavLink to={"/dashboard/userDashboard"}>User Dashboard</NavLink>
+                } */}
             </li>
           </ul>
         </div>
         <div className="navbar-end">
           {user ? (
-            <button onClick={handleSignOut} className="btn">Logout</button>
+            <div className="flex gap-4 items-center">
+              <div className="avatar online">
+                <div className="w-8 md:w-12 rounded-full">
+                  <img src={user.photoURL} />
+                </div>
+              </div>
+              <button onClick={handleSignOut} className="btn">
+                Logout
+              </button>
+            </div>
           ) : (
             <Link to={"/login"} className="btn">
               Login

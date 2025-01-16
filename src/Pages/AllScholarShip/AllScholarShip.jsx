@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import UseAxiosPublic from "../../hooks/UseAxiosPublic";
 import ScholarshipCard from "./ScholarshipCard";
 
-
 const AllScholarShip = () => {
     const axiosPublic = UseAxiosPublic();
     const [scholarships, setScholarships] = useState([]);
@@ -17,10 +16,9 @@ const AllScholarShip = () => {
         fetchAllData();
     }, [axiosPublic]);
 
-    console.log(scholarships);
-
     return (
-        <div className="max-w-7xl w-full mx-auto">
+        <div className="max-w-7xl w-full mx-auto">  
+            
             <div className="grid grid-cols-12 gap-4 mt-8">
             {
                 scholarships.map(scholarship => <ScholarshipCard 
