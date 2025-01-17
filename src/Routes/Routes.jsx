@@ -15,6 +15,8 @@ import AllScholarShip from "../Pages/AllScholarShip/AllScholarShip";
 import ScholarShipDetails from "../Pages/AllScholarShip/ScholarShipDetails/ScholarShipDetails";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Payment from "../Dashboard/Payment/Payment";
+import UserProfile from "../Dashboard/UserDashboard/UserProfile/UserProfile";
+import UserApplication from "../Dashboard/UserDashboard/UserApplication/UserApplication";
 
 const Routes = createBrowserRouter([
     {
@@ -65,6 +67,16 @@ const Routes = createBrowserRouter([
         {
             path: "adminProfile",
             element: <AdminProfile></AdminProfile>
+        },
+
+        {
+            path: "userProfile",
+            element: <UserProfile></UserProfile>  
+        },
+
+        {
+            path: "userApplications",
+            element: <UserApplication></UserApplication>
         },
 
         {

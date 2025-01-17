@@ -36,8 +36,12 @@ const ApplicationForm = ({ isHidden, scholarshipInfo }) => {
         phoneNumber: data.phoneNumber,
         applicantName: user?.displayName,
         applicantEmail: user?.email,
+        universityName: data.universityName,
+        scholarshipCategory: data.scholarshipCategory,
+        subjectCategory: data.subjectCategory,
         scholarshipId: id,
         date: new Date(),
+        status: 'pending'
       };
 
       const applicationResponse = await axiosSecure.post("/applications",applicantInfo
@@ -205,6 +209,7 @@ const ApplicationForm = ({ isHidden, scholarshipInfo }) => {
           <input
             type="text"
             id="university"
+            {...register("subjectCategory")}
             value={`${subjectCategory}`}
             readOnly
             className="input input-bordered w-full bg-gray-200"
@@ -220,6 +225,7 @@ const ApplicationForm = ({ isHidden, scholarshipInfo }) => {
           <input
             type="text"
             id="university"
+            {...register("universityName")}
             value={`${universityName}`}
             readOnly
             className="input input-bordered w-full bg-gray-200"
@@ -235,6 +241,7 @@ const ApplicationForm = ({ isHidden, scholarshipInfo }) => {
           <input
             type="text"
             id="university"
+            {...register("scholarshipCategory")}
             value={`${scholarshipCategory}`}
             readOnly
             className="input input-bordered w-full bg-gray-200"
