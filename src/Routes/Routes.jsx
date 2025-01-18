@@ -17,6 +17,7 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Payment from "../Dashboard/Payment/Payment";
 import UserProfile from "../Dashboard/UserDashboard/UserProfile/UserProfile";
 import UserApplication from "../Dashboard/UserDashboard/UserApplication/UserApplication";
+import UpdateApplication from "../Dashboard/UserDashboard/UserApplication/UpdateApplication";
 
 const Routes = createBrowserRouter([
     {
@@ -77,6 +78,12 @@ const Routes = createBrowserRouter([
         {
             path: "userApplications",
             element: <UserApplication></UserApplication>
+        },
+
+        {
+            path: "updateApplication/:id",
+            element: <UpdateApplication></UpdateApplication>,
+            loader: ({params})=> fetch(`https://dream-bloom-scholarships.vercel.app/applications/${params.id}`)
         },
 
         {

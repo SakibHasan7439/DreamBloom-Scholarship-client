@@ -41,7 +41,6 @@ const ScholarShipDetails = () => {
     applicationFees: applicationFees,
     id: id
   };
-  console.log(scholarshipInfo);
 
   return (
     <div className="max-w-7xl w-full mx-auto">

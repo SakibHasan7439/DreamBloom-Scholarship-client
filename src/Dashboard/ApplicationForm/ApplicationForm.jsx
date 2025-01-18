@@ -92,7 +92,7 @@ const ApplicationForm = ({ isHidden, scholarshipInfo }) => {
             type="file"
             id="photo"
             accept="image/*"
-            {...register("image", { required: true })}
+            {...register("image")}
             className="file-input file-input-bordered w-full"
           />
         </div>
