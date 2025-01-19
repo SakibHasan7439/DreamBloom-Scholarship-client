@@ -4,6 +4,7 @@ import UserApplicationTableRow from "./UserApplicationTableRow";
 import UseAuth from "../../../hooks/UseAuth";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import { format } from "date-fns";
 
 const UserApplication = () => {
   const {user} = UseAuth();
@@ -19,7 +20,7 @@ const UserApplication = () => {
 
   const handleSubmitReview = async(e) =>{
     e.preventDefault();
-    document.getElementById("my_modal_1").close();
+    document.getElementById("my-modal").close();
     const form = e.target;
     const rating = form.rating.value;
     const comment = form.comment.value;
@@ -30,7 +31,7 @@ const UserApplication = () => {
         userName: user?.displayName,
         userImage: user?.photoURL,
         userEmail: user?.email,
-        date: new Date(),
+        date: format(new Date(), 'P'),
         university_id: applicationInfo.scholarshipId,
         university_name: applicationInfo.universityName,
 

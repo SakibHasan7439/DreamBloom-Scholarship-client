@@ -18,6 +18,8 @@ import Payment from "../Dashboard/Payment/Payment";
 import UserProfile from "../Dashboard/UserDashboard/UserProfile/UserProfile";
 import UserApplication from "../Dashboard/UserDashboard/UserApplication/UserApplication";
 import UpdateApplication from "../Dashboard/UserDashboard/UserApplication/UpdateApplication";
+import UserReview from "../Dashboard/UserDashboard/UserReview/UserReview";
+import UpdateUserReview from "../Dashboard/UserDashboard/UserReview/UpdateUserReview";
 
 const Routes = createBrowserRouter([
     {
@@ -78,6 +80,17 @@ const Routes = createBrowserRouter([
         {
             path: "userApplications",
             element: <UserApplication></UserApplication>
+        },
+
+        {
+            path: "userReviews",
+            element: <UserReview></UserReview>
+        },
+
+        {
+            path: "UpdateUserReview/:id",
+            element: <UpdateUserReview></UpdateUserReview>,
+            loader: ({params})=>fetch(`https://dream-bloom-scholarships.vercel.app/review/${params.id}`)
         },
 
         {

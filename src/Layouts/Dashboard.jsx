@@ -38,7 +38,7 @@ const Dashboard = () => {
                     : <ul>
                         <li><NavLink to={"/dashboard/userProfile"}>My Profile</NavLink></li>
                         <li><NavLink to={"/dashboard/userApplications"}>My Application</NavLink></li>
-                        <li><NavLink to={"/dashboard/myReview"}>My Review</NavLink></li>
+                        <li><NavLink to={"/dashboard/userReviews"}>My Review</NavLink></li>
                         <div className="divider"></div>
                         <li><NavLink to={"/"}>Home</NavLink></li>
                         <li><NavLink to={"/allScholarship"}>Manage Review</NavLink></li>
