@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useRole from "../hooks/useRole";
-
+import "../customStyle/style.css"
 const Dashboard = () => {
     const [role, roleLoading] = useRole();
     if(roleLoading) {
@@ -41,7 +41,7 @@ const Dashboard = () => {
                         <li><NavLink to={"/dashboard/userReviews"}>My Review</NavLink></li>
                         <div className="divider"></div>
                         <li><NavLink to={"/"}>Home</NavLink></li>
-                        <li><NavLink to={"/allScholarship"}>Manage Review</NavLink></li>
+                        <li><NavLink to={"/allScholarships"}>All scholarships</NavLink></li>
                     </ul>
                 }
             </div>

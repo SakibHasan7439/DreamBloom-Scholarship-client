@@ -33,9 +33,9 @@ const AddScholarShip = () => {
                 serviceCharge: parseFloat(data.serviceCharge),
                 postDate: data.postDate,
                 degree: data.degree,
-                postedEmail: user.email
-                
-            }
+                postedEmail: user.email     
+            };
+
             const scholarshipResponse = await axiosSecure.post('/scholarships', scholarshipData);
             if(scholarshipResponse.data.insertedId) {
                 reset();

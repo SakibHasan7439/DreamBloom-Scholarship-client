@@ -69,22 +69,22 @@ const Routes = createBrowserRouter([
       children: [
         {
             path: "adminProfile",
-            element: <AdminProfile></AdminProfile>
+            element: <PrivateRoute><AdminProfile></AdminProfile></PrivateRoute>
         },
 
         {
             path: "userProfile",
-            element: <UserProfile></UserProfile>  
+            element: <PrivateRoute><UserProfile></UserProfile></PrivateRoute>  
         },
 
         {
             path: "userApplications",
-            element: <UserApplication></UserApplication>
+            element: <PrivateRoute><UserApplication></UserApplication></PrivateRoute>
         },
 
         {
             path: "userReviews",
-            element: <UserReview></UserReview>
+            element: <PrivateRoute><UserReview></UserReview></PrivateRoute>
         },
 
         {
@@ -101,27 +101,27 @@ const Routes = createBrowserRouter([
 
         {
             path: "addScholarShip",
-            element: <AddScholarShip></AddScholarShip>
+            element: <PrivateRoute><AddScholarShip></AddScholarShip></PrivateRoute>
         },
 
         {
             path: "manageApplication",
-            element: <ManageApplication></ManageApplication>
+            element: <PrivateRoute><ManageApplication></ManageApplication></PrivateRoute>
         },
 
         {
             path: "manageScholarShip",
-            element: <ManageScholarShip></ManageScholarShip>
+            element: <PrivateRoute><ManageScholarShip></ManageScholarShip></PrivateRoute>
         },
 
         {
             path: "manageReview",
-            element: <ManageReview></ManageReview>
+            element: <PrivateRoute><ManageReview></ManageReview></PrivateRoute>
         },
 
         {
             path: "manageUsers",
-            element: <ManageUser></ManageUser>
+            element: <PrivateRoute><ManageUser></ManageUser></PrivateRoute>
         },
 
       ]

@@ -2,6 +2,7 @@
 import { Link, useParams } from "react-router-dom";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import { useEffect, useState } from "react";
+import ScholarshipReviews from "./ScholarshipReviews";
 
 const ScholarShipDetails = () => {
   const { id } = useParams();
@@ -39,6 +40,7 @@ const ScholarShipDetails = () => {
     scholarshipCategory: scholarshipCategory,
     subjectCategory: subjectCategory,
     applicationFees: applicationFees,
+    scholarshipName: scholarshipName,
     id: id
   };
 
@@ -129,9 +131,10 @@ const ScholarShipDetails = () => {
           </div>
         </div>
         <div>
-            <h2 className="text-center text-2xl">Review section</h2>
+            <h2 className="text-center my-8 text-2xl">Review section</h2>
             {/* TODO: NEED TO IMPLEMENT REVIEW SECTION HERE */}
-
+            <ScholarshipReviews
+            scholarshipName={scholarshipName}></ScholarshipReviews>
             
         </div>
       </div>

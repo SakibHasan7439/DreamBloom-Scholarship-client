@@ -2,11 +2,12 @@ import { Link, NavLink } from "react-router-dom";
 import websiteLogo from "../../assets/websiteLogo.png";
 import UseAuth from "../../hooks/UseAuth";
 import toast from "react-hot-toast";
+import useRole from "../../hooks/useRole";
 // import useRole from "../../hooks/useRole";
 
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
-  // const role = useRole();
+  const role = useRole();
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
@@ -46,15 +47,15 @@ const Navbar = () => {
                 <NavLink to={"/"}>Home</NavLink>
               </li>
               <li>
-                <NavLink to={"/allScholarship"}>All Scholarship</NavLink>
+                <NavLink to={"/allScholarships"}>All Scholarship</NavLink>
               </li>
               <li>
-                <NavLink to={"/dashboard"}>User Dashboard</NavLink>
-                {/* {
-                  role === "moderator" ? <NavLink to={"/dashboard/moderatorDashboard"}>Moderator Dashboard</NavLink>
-                  : role === "admin" ? <NavLink to={"/dashboard/adminDashboard"}>Admin Dashboard</NavLink>
-                  : <NavLink to={"/dashboard/userDashboard"}>User Dashboard</NavLink>
-                } */}
+                {/* <NavLink to={"/dashboard"}>User Dashboard</NavLink> */}
+                {
+                  role === "moderator" ? <NavLink to={"/dashboard/moderatorProfile"}>Dashboard</NavLink>
+                  : role === "admin" ? <NavLink to={"/dashboard/adminProfile"}>Dashboard</NavLink>
+                  : <NavLink to={"/dashboard/userProfile"}>Dashboard</NavLink>
+                }
               </li>
             </ul>
           </div>
@@ -71,12 +72,11 @@ const Navbar = () => {
               <NavLink to={"/allScholarships"}>All Scholarship</NavLink>
             </li>
             <li>
-            <NavLink to={"/dashboard"}>User Dashboard</NavLink>
-            {/* {
-                  role[0] === "moderator" ? <NavLink to={"/dashboard/moderatorDashboard"}>Moderator Dashboard</NavLink>
-                  : role[0] === "admin" ? <NavLink to={"/dashboard/adminDashboard"}>Admin Dashboard</NavLink>
-                  : <NavLink to={"/dashboard/userDashboard"}>User Dashboard</NavLink>
-                } */}
+            {
+                  role === "moderator" ? <NavLink to={"/dashboard/moderatorProfile"}>Dashboard</NavLink>
+                  : role === "admin" ? <NavLink to={"/dashboard/adminProfile"}>Dashboard</NavLink>
+                  : <NavLink to={"/dashboard/userProfile"}>Dashboard</NavLink>
+                }
             </li>
           </ul>
         </div>

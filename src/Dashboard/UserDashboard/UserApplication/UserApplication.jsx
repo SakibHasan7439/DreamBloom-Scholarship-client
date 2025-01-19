@@ -13,14 +13,14 @@ const UserApplication = () => {
   const { data: applications = [], refetch } = useQuery({
     queryKey: ["applications"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/applications");
+      const res = await axiosSecure.get(`/userApplications/${user?.email}`);
       return res.data;
     },
   });
 
   const handleSubmitReview = async(e) =>{
     e.preventDefault();
-    document.getElementById("my-modal").close();
+    document.getElementById("my_modal_1").close();
     const form = e.target;
     const rating = form.rating.value;
     const comment = form.comment.value;
@@ -34,7 +34,7 @@ const UserApplication = () => {
         date: format(new Date(), 'P'),
         university_id: applicationInfo.scholarshipId,
         university_name: applicationInfo.universityName,
-
+        scholarshipName: applicationInfo.scholarshipName
     };
     console.log(reviewInfo);
     await axiosSecure.post('/review', reviewInfo)
@@ -46,6 +46,7 @@ const UserApplication = () => {
                 icon: "success"
             });
         }
+        form.reset();
     })
   }
 

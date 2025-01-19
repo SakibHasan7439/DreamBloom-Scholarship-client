@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import ReviewTableRow from "./ReviewTableRow";
+import UseAuth from "../../../hooks/UseAuth";
 
 const UserReview = () => {
+    const {user} = UseAuth();
     const axiosSecure = UseAxiosSecure();
     const {data: reviews, refetch} = useQuery({
         queryKey: ['review'],
         queryFn: async() =>{
-            const res = await axiosSecure.get('/review')
+            const res = await axiosSecure.get(`/userReviews/${user?.email}`)
             return res.data;
         }
     })

@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 /* eslint-disable react/prop-types */
 const ApplicationForm = ({ isHidden, scholarshipInfo }) => {
   const { user } = UseAuth();
-  const { universityName, scholarshipCategory, subjectCategory, id } =
+  const { universityName, scholarshipCategory, subjectCategory, scholarshipName, id } =
     scholarshipInfo;
 
   const axiosSecure = UseAxiosSecure();
@@ -39,6 +39,7 @@ const ApplicationForm = ({ isHidden, scholarshipInfo }) => {
         universityName: data.universityName,
         scholarshipCategory: data.scholarshipCategory,
         subjectCategory: data.subjectCategory,
+        scholarshipName: scholarshipName,
         scholarshipId: id,
         date: new Date(),
         status: 'pending'

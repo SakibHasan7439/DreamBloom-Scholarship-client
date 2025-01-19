@@ -10,7 +10,6 @@ const UserApplicationTableRow = ({application, index,
     refetch, setApplicationInfo}) => {
   const axiosSecure = UseAxiosSecure();
   const {universityName, subjectCategory, degree, status, scholarshipId} = application;
-
     const handleSubmitDelete = async (id) => {
       Swal.fire({
         title: "Are you sure?",
