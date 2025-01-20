@@ -1,8 +1,19 @@
-# React + Vite
+ # DreamBloom Scholarship
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ website live link:
+ https://final-ass-task.web.app/
+ 
+ Purpose of this website:
+ This website is for both admin and user , the admin can add and manage all scholarship and the user can apply and give review in the website.
 
-Currently, two official plugins are available:
+ Key features:
+ Role based system
+ Role for multiple user like admin, moderator and normal user .
+ Admin can manage all users to all scholarship and also application.
+ User can add and modify there own applications
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+npm package:
+axios
+toast
+sweetAlert
