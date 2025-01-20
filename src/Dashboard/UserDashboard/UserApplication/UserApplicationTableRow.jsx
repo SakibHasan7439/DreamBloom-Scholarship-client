@@ -41,7 +41,7 @@ const UserApplicationTableRow = ({application, index,
         <th>{index + 1}</th>
         <td>{universityName}</td>
         <td>United state</td>
-        <td>{}</td>
+        <td>{application?.feedback}</td>
         <td>{subjectCategory}</td>
         <td>{degree}</td>
         <td>{}</td>

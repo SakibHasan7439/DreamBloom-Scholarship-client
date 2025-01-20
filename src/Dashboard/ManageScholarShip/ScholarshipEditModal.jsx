@@ -1,66 +1,61 @@
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 
 /* eslint-disable react/prop-types */
 const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
 
-        const {applicationDeadline,
-            applicationFees,
-            degree,
-            postDate,
-            scholarshipCategory,
-            scholarshipName,
-            serviceCharge,
-            subjectCategory,
-            tuitionFees,
-            universityCity,
-            universityCountry,
-            universityName,
-            universityWorldRank,
-            _id} =  scholarshipInfo;
-            console.log(universityName);
+  const {applicationDeadline,
+      applicationFees,
+      degree,
+      postDate,
+      scholarshipCategory,
+      scholarshipName,
+      serviceCharge,
+      subjectCategory,
+      tuitionFees,
+      universityCity,
+      universityCountry,
+      universityName,
+      universityWorldRank,
+      _id} =  scholarshipInfo;
 
-  const { register, handleSubmit } = useForm();
   const axiosSecure = UseAxiosSecure();
 
-  const onSubmit = async (data) => { 
-    document.getElementById("my_modal_5").close();
-    const imageFile = { image: data.image[0] };
-    const res = await axios.post(
-      `https://api.imgbb.com/1/upload?key=${
-        import.meta.env.VITE_IMGBB_API_KEY
-      }`,
-      imageFile,
-      {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      }
-    );
+  const handleScholarshipUpdate = async (e) => { 
+    const form = e.target;
+    console.log(form.universityName.value);
+    const image = form.image.files[0];
 
-    if (res.data.success) {
+
+      const formData = new FormData()
+      formData.append('image', image)
+      const { data } = await axios.post(
+        `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API_KEY}`,
+        formData
+      )
+
       const scholarshipInfo = {
-        scholarshipName: data.scholarshipName,
-        universityName: data.universityName,
-        image: res.data.data.display_url,
-        universityCountry: data.universityCountry,
-        universityCity: data.universityCity,
-        subjectCategory: data.subjectCategory,
-        scholarshipCategory: data.scholarshipCategory,
-        tuitionFees: data.tuitionFees,
-        applicationFees: parseFloat(data.applicationFees),
-        universityWorldRank: data.universityWorldRank,
-        applicationDeadline: data.applicationDeadline,
-        serviceCharge: parseFloat(data.serviceCharge),
-        degree: data.degree,
+        scholarshipName: form.scholarshipName.value,
+        universityName: form.universityName.value,
+        image: data.data.display_url,
+        universityCountry: form.universityCountry.value,
+        universityCity: form.universityCity.value,
+        subjectCategory: form.subjectCategory.value,
+        scholarshipCategory: form.scholarshipCategory.value,
+        tuitionFees: form.tuitionFees.value,
+        applicationFees: parseFloat(form.applicationFees.value),
+        universityWorldRank: form.universityWorldRank.value,
+        applicationDeadline: form.applicationDeadline.value,
+        serviceCharge: parseFloat(form.serviceCharge.value),
+        degree: form.degree.value,
       };
 
       const scholarshipResponse = await axiosSecure.patch(`/updateScholarships/${_id}`,
         scholarshipInfo
       );
       if (scholarshipResponse.data.modifiedCount > 0) {
+        document.getElementById("my_modal_5").close();
         refetch();
         Swal.fire({
           title: "Successful",
@@ -68,20 +63,26 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
           icon: "success",
         });
       }
-    }
+
   };
+
+  const onFunctionSubmit = (e) =>{
+    e.preventDefault();
+    handleScholarshipUpdate(e, _id);
+  }
   return (
     <div>
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={onFunctionSubmit}>
+
             <div className="p-4">
               <label>ScholarShip Name</label>
               <input
                 type="text"
                 placeholder="Type here"
+                name="scholarshipName"
                 defaultValue={scholarshipName}
-                {...register("scholarshipName")}
                 className="input input-bordered w-full block mb-4"
               />
             </div>
@@ -91,7 +92,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
               <input
                 type="text"
                 defaultValue={universityName}
-                {...register("universityName")}
+                name="universityName"
                 placeholder="Type here"
                 className="input input-bordered w-full block"
               />
@@ -100,11 +101,11 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
             <div className="p-4">
               <label>ScholarShip Image</label>
               <input
-                type="file"
-                accept="Image/*"
-                {...register("image", { required: true })}
-                placeholder="Type here"
-                className="w-full block"
+                required
+                type='file'
+                id='image'
+                name='image'
+                accept='image/*'
               />
             </div>
 
@@ -114,7 +115,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
                 type="text"
                 placeholder="Type here"
                 defaultValue={universityCountry}
-                {...register("universityCountry")}
+                name="universityCountry"
                 className="input input-bordered block w-full"
               />
             </div>
@@ -124,7 +125,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
               <input
                 type="text"
                 defaultValue={universityCity}
-                {...register("universityCity")}
+                name="universityCity"
                 className="input input-bordered block w-full"
               />
             </div>
@@ -134,7 +135,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
               <input
                 type="text"
                 defaultValue={universityWorldRank}
-                {...register("universityWorldRank")}
+                name="universityWorldRank"
                 className="input input-bordered block w-full"
               />
             </div>
@@ -142,48 +143,48 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
             <div className="p-4">
               <label>Subject Category</label>
               <select
-                defaultValue={subjectCategory}
-                {...register("subjectCategory")}
+                value={subjectCategory}
+                name="subjectCategory"
                 className="select select-bordered w-full"
               >
                 <option disabled>
                   Choose a Subject
                 </option>
-                <option>Agriculture</option>
-                <option>Engineering</option>
-                <option>Doctor</option>
+                <option value={"Agriculture"}>Agriculture</option>
+                <option value={"Engineering"}>Engineering</option>
+                <option value={"Doctor"}>Doctor</option>
               </select>
             </div>
 
             <div className="p-4">
               <label>Scholarship category</label>
               <select
-                {...register("scholarshipCategory")}
-                defaultValue={scholarshipCategory}
+                name="scholarshipCategory"
+                value={scholarshipCategory}
                 className="select select-bordered w-full"
               >
                 <option disabled>
                   Choose a ScholarShip
                 </option>
-                <option>Full Funded</option>
-                <option>Partial</option>
-                <option>Self Funded</option>
+                <option value={"Full Funded"}>Full Funded</option>
+                <option value={"Partial"}>Partial</option>
+                <option value={"Self Funded"}>Self Funded</option>
               </select>
             </div>
 
             <div className="p-4">
               <label>Degree </label>
               <select
-                defaultValue={degree}
-                {...register("degree")}
+                value={degree}
+                name="degree"
                 className="select select-bordered w-full"
               >
                 <option disabled>
                   Choose a Degree
                 </option>
-                <option>Diploma</option>
-                <option>Bachelor</option>
-                <option>Masters</option>
+                <option value={"Diploma"}>Diploma</option>
+                <option value={"Bachelor"}>Bachelor</option>
+                <option value={"Masters"}>Masters</option>
               </select>
             </div>
 
@@ -192,7 +193,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
               <input
                 type="text"
                 defaultValue={tuitionFees}
-                {...register("tuitionFees")}
+                name="tuitionFees"
                 placeholder="Type here"
                 className="input input-bordered block w-full"
               />
@@ -203,7 +204,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
               <input
                 type="number"
                 defaultValue={applicationFees}
-                {...register("applicationFees")}
+                name="applicationFees"
                 placeholder="Type here"
                 className="input input-bordered block w-full"
               />
@@ -214,7 +215,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
               <input
                 type="date"
                 defaultValue={applicationDeadline}
-                {...register("applicationDeadline")}
+                name="applicationDeadline"
                 placeholder="Type here"
                 className="input input-bordered block w-full"
               />
@@ -225,7 +226,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
               <input
                 type="number"
                 defaultValue={serviceCharge}
-                {...register("serviceCharge")}
+                name="serviceCharge"
                 placeholder="Type here"
                 className="input input-bordered block w-full"
               />
@@ -236,7 +237,7 @@ const ScholarshipEditModal = ({ scholarshipInfo, refetch }) => {
               <input
                 type="date"
                 defaultValue={postDate}
-                {...register("postDate")}
+                name="postDate"
                 placeholder="Type here"
                 className="input input-bordered block w-full"
               />

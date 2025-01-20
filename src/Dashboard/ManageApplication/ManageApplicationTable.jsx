@@ -1,8 +1,9 @@
-import deleteIcon from "../../assets/delete.png";
+import reject from "../../assets/reject.png";
 import feedback from "../../assets/feedback.png";
 import details from "../../assets/detail.png";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 /* eslint-disable react/prop-types */
 const ManageApplicationTable = ({application, index, setGetApplication, refetch}) => {
@@ -23,6 +24,35 @@ const ManageApplicationTable = ({application, index, setGetApplication, refetch}
         })
     }
 
+    const handleSubmitReject = (id) =>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, reject it!"
+          }).then(async(result) => {
+            if (result.isConfirmed) {
+                await axiosSecure.patch(`/applicationRejectStatus/${id}`, {status: "Rejected"})
+                .then(res =>{
+                    if(res.data.modifiedCount > 0){
+                        refetch();
+                        Swal.fire({
+                            title: "Role changed",
+                            text: `Role changed to ${status}`,
+                            icon: "success"
+                        });
+                    }
+                })
+                .catch(error =>{
+                    toast.error(error.message);
+                })
+            }
+        });
+    }
+
   return (
     <tr key={_id}>
       <th>{index + 1}</th>
@@ -31,14 +61,17 @@ const ManageApplicationTable = ({application, index, setGetApplication, refetch}
       <td>{universityName}</td>
       <td>{phoneNumber}</td>
       <td>
-        <select onChange={(e)=>handleSubmitStatusChange(_id, e.target.value)}
-          value={status}
-          className="select w-full max-w-xs"
-        >
-          <option>pending</option>
-          <option>processing</option>
-          <option>completed</option>
-        </select>
+        {
+            status === "Rejected" ? <p className="text-red-500 text-center">Rejected</p>
+            : <select onChange={(e)=>handleSubmitStatusChange(_id, e.target.value)}
+            value={status}
+            className="select w-full max-w-xs"
+          >
+            <option>pending</option>
+            <option>processing</option>
+            <option>completed</option>
+          </select>
+        }
       </td>
       <td className="flex items-center gap-6">
         <button onClick={()=>{
@@ -61,8 +94,8 @@ const ManageApplicationTable = ({application, index, setGetApplication, refetch}
             alt=""
           />
         </button>
-        <button>
-          <img className="w-8" src={deleteIcon} alt="" />
+        <button disabled={status === "Rejected"} onClick={()=>handleSubmitReject(_id)}>
+          <img className="w-8" src={reject} alt="" />
         </button>
       </td>
     </tr>
