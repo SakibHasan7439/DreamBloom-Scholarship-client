@@ -20,6 +20,7 @@ import UserApplication from "../Dashboard/UserDashboard/UserApplication/UserAppl
 import UpdateApplication from "../Dashboard/UserDashboard/UserApplication/UpdateApplication";
 import UserReview from "../Dashboard/UserDashboard/UserReview/UserReview";
 import UpdateUserReview from "../Dashboard/UserDashboard/UserReview/UpdateUserReview";
+import ModeratorProfile from "../Dashboard/ModeratorProfile/ModeratorProfile";
 
 const Routes = createBrowserRouter([
     {
@@ -67,9 +68,20 @@ const Routes = createBrowserRouter([
       errorElement: <ErrorPage></ErrorPage>,
 
       children: [
+
+        {
+            path: "dashboard",
+            element: <h1>hello</h1>
+        },
+
         {
             path: "adminProfile",
             element: <PrivateRoute><AdminProfile></AdminProfile></PrivateRoute>
+        },
+
+        {
+            path: "moderatorProfile",
+            element: <PrivateRoute><ModeratorProfile></ModeratorProfile></PrivateRoute>
         },
 
         {

@@ -8,6 +8,12 @@ import useRole from "../../hooks/useRole";
 const Navbar = () => {
   const { user, signOutUser } = UseAuth();
   const role = useRole();
+
+  console.log(role[0]);
+  if(!role[0]){
+    <li>Loading...</li>
+  } 
+
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
@@ -49,14 +55,22 @@ const Navbar = () => {
               <li>
                 <NavLink to={"/allScholarships"}>All Scholarship</NavLink>
               </li>
-              <li>
-                {/* <NavLink to={"/dashboard"}>User Dashboard</NavLink> */}
-                {
-                  role === "moderator" ? <NavLink to={"/dashboard/moderatorProfile"}>Dashboard</NavLink>
-                  : role === "admin" ? <NavLink to={"/dashboard/adminProfile"}>Dashboard</NavLink>
-                  : <NavLink to={"/dashboard/userProfile"}>Dashboard</NavLink>
-                }
-              </li>
+            
+              {role[0] === "Moderator" && (
+                <li>
+                  <NavLink to="/dashboard/moderatorProfile">Dashboard</NavLink>
+                </li>
+              )}
+              {role[0] === "Admin" && (
+                <li>
+                  <NavLink to="/dashboard/adminProfile">Dashboard</NavLink>
+                </li>
+              )}
+              {role[0] === "user" && (
+                <li>
+                  <NavLink to="/dashboard/userProfile">Dashboard</NavLink>
+                </li>
+              )}
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">
@@ -71,13 +85,23 @@ const Navbar = () => {
             <li>
               <NavLink to={"/allScholarships"}>All Scholarship</NavLink>
             </li>
-            <li>
-            {
-                  role === "moderator" ? <NavLink to={"/dashboard/moderatorProfile"}>Dashboard</NavLink>
-                  : role === "admin" ? <NavLink to={"/dashboard/adminProfile"}>Dashboard</NavLink>
-                  : <NavLink to={"/dashboard/userProfile"}>Dashboard</NavLink>
-                }
-            </li>
+            {/* <NavLink to={`/dashboard/${role[0] === "Admin" && "adminProfile"}`}>Dashboard</NavLink> */}
+            {!role && <li>Loading...</li>}
+            {role[0] === "Moderator" && (
+              <li>
+                <NavLink to="/dashboard/moderatorProfile">Dashboard</NavLink>
+              </li>
+            )}
+            {role[0] === "Admin" && (
+              <li>
+                <NavLink to="/dashboard/adminProfile">Dashboard</NavLink>
+              </li>
+            )}
+            {role[0] === "user" && (
+              <li>
+                <NavLink to="/dashboard/userProfile">Dashboard</NavLink>
+              </li>
+            )}
           </ul>
         </div>
         <div className="navbar-end">

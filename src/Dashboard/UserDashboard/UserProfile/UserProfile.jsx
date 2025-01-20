@@ -16,7 +16,6 @@ const UserProfile = () => {
 
     getStatistic();
   }, [axiosSecure, user?.email])
-  console.log(statistics);
 
   return (
     <div className="p-4">

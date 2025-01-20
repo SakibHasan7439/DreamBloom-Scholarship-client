@@ -3,7 +3,7 @@ import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 import useRole from "../../hooks/useRole";
 import UseAuth from "../../hooks/UseAuth";
 
-const AdminProfile = () => {
+const ModeratorProfile = () => {
   const axiosSecure = UseAxiosSecure();
   const {user} = UseAuth();
   const role = useRole();
@@ -33,11 +33,6 @@ const AdminProfile = () => {
           <div className="stat-value">{statistics?.totalApplication}</div>
         </div>
 
-        <div className="stat bg-orange-400 p-6 text-center font-semibold text-white">
-          <div className="stat-title">Total Users</div>
-          <div className="stat-value">{statistics.totalUser}</div>
-        </div>
-
         <div className="stat bg-blue-300 font-semibold text-center">
           <div className="stat-title">Total Review</div>
           <div className="stat-value">{statistics.totalReview}</div>
@@ -47,4 +42,4 @@ const AdminProfile = () => {
   );
 };
 
-export default AdminProfile;
+export default ModeratorProfile;
