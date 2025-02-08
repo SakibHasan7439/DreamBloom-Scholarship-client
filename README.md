@@ -42,3 +42,9 @@ To run this project locally you will need to follow this steps:
       MONGODB_URI=your_mongodb_connection_string
       
   Now just run it with the command  "npm run dev".
+
+Test my website using:
+ Admin userEmail: jhonkermahbub@gmail.com
+ Admin password: 12345T$
+ Moderator userEmail: sakib.dev@gmail.com
+ Moderator password: 12345T$
