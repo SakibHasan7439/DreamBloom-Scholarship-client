@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 import useRole from "../../hooks/useRole";
 import UseAuth from "../../hooks/UseAuth";
+import FirstPIChart from "../../SharedComponents/FirstPIChart/FirstPIChart";
+import FirstBarChart from "../../SharedComponents/FirstBarChart/FirstBarChart";
 
 const ModeratorProfile = () => {
   const axiosSecure = UseAxiosSecure();
@@ -36,6 +38,14 @@ const ModeratorProfile = () => {
         <div className="stat bg-blue-300 font-semibold text-center">
           <div className="stat-title">Total Review</div>
           <div className="stat-value">{statistics.totalReview}</div>
+        </div>
+      </div>
+      <div className="flex items-center justify-between flex-col md:flex-row">
+        <div className="w-1/2">
+          <FirstBarChart></FirstBarChart>
+        </div>
+        <div className="w-1/2">
+          <FirstPIChart></FirstPIChart>
         </div>
       </div>
     </div>
