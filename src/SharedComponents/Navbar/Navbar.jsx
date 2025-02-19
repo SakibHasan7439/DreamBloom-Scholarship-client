@@ -9,7 +9,6 @@ const Navbar = () => {
   const { user, signOutUser } = UseAuth();
   const role = useRole();
 
-  console.log(role[0]);
   if(!role[0]){
     <li>Loading...</li>
   } 

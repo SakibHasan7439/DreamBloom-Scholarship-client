@@ -26,7 +26,7 @@ const TopScholarShip = () => {
     console.log(topScholarShips);
 
     return (
-        <div className="max-w-7xl w-full mx-auto">
+        <div className="max-w-7xl w-full mx-auto my-8 md:my-20">
             <SectionTitle text={"Top ScholarShips"}></SectionTitle> 
             <div className="mb-8">
                     <Swiper slidesPerView={4}
