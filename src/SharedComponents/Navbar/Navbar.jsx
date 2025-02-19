@@ -54,6 +54,10 @@ const Navbar = () => {
               <li>
                 <NavLink to={"/allScholarships"}>All Scholarship</NavLink>
               </li>
+
+              <li>
+                <NavLink to={"/aboutUs"}>About Us</NavLink>
+              </li>
             
               {role[0] === "Moderator" && (
                 <li>
@@ -77,12 +81,16 @@ const Navbar = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu gap-4 menu-horizontal px-1">
+          <ul className="menu gap-4 md:text-lg menu-horizontal px-1">
             <li>
               <NavLink to={"/"}>Home</NavLink>
             </li>
             <li>
               <NavLink to={"/allScholarships"}>All Scholarship</NavLink>
+            </li>
+
+            <li>
+              <NavLink to={"/aboutUs"}>About Us</NavLink>
             </li>
             {/* <NavLink to={`/dashboard/${role[0] === "Admin" && "adminProfile"}`}>Dashboard</NavLink> */}
             {!role && <li>Loading...</li>}

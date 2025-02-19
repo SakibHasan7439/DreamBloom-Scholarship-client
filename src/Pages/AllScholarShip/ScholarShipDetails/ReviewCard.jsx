@@ -6,7 +6,7 @@ const ReviewCard = ({ review }) => {
   const { comment, rating, userName, userImage, date } = review;
   console.log(review);
   return (
-    <div className="p-4 rounded-md bg-white shadow-md flex flex-col justify-center items-center">
+    <div className="p-4 rounded-md bg-white shadow-md h-[338px] flex flex-col justify-center items-center">
       <img
         src={userImage}
         className="rounded-full mx-auto w-10 h-10 md:w-28 md:h-28 my-6"

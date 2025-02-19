@@ -21,6 +21,7 @@ import UpdateApplication from "../Dashboard/UserDashboard/UserApplication/Update
 import UserReview from "../Dashboard/UserDashboard/UserReview/UserReview";
 import UpdateUserReview from "../Dashboard/UserDashboard/UserReview/UpdateUserReview";
 import ModeratorProfile from "../Dashboard/ModeratorProfile/ModeratorProfile";
+import AboutUs from "../Pages/AboutUs/AboutUs";
 
 const Routes = createBrowserRouter([
     {
@@ -40,8 +41,13 @@ const Routes = createBrowserRouter([
             },
 
             {
+                path: "/aboutUs",
+                element: <AboutUs></AboutUs>
+            },
+
+            {
                 path: "/scholarship/:id",
-                element: <PrivateRoute><ScholarShipDetails></ScholarShipDetails></PrivateRoute>
+                element: <ScholarShipDetails></ScholarShipDetails>
             },
 
             {

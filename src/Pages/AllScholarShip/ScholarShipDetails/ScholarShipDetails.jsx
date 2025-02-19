@@ -1,10 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Link, useParams } from "react-router-dom";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
-import { useEffect, useState } from "react";
 import ScholarshipReviews from "./ScholarshipReviews";
+import UseAuth from "../../../hooks/UseAuth";
+import { useEffect, useState } from "react";
 
 const ScholarShipDetails = () => {
+  const { user } = UseAuth();
+
   const { id } = useParams();
   const axiosSecure = UseAxiosSecure();
   const [details, setDetails] = useState({});
@@ -120,7 +123,9 @@ const ScholarShipDetails = () => {
               </li>
             </ul>
           </div>
-          <div className="text-center">
+          
+          {
+            user && <div className="text-center">
             {
               universityName &&
               scholarshipCategory &&
@@ -128,6 +133,7 @@ const ScholarShipDetails = () => {
                 <Link to={"/payment"} state={scholarshipInfo} className="px-4 font-semibold hover:bg-[#4376b0] py-2 rounded-lg md:px-6 md:py-3 bg-[#93c4fd] shadow-md shadow-black hover:text-white transition-all">Apply Now</Link>
             }
           </div>
+          }
           </div>
         </div>
         <div>
