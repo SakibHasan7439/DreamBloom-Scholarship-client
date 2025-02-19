@@ -18,7 +18,6 @@ const Dashboard = () => {
       Open drawer
     </label>
 
-    {/* Main Content */}
     <div className="flex-1 max-w-5xl mt-4 mx-auto w-full pt-4">
       <Outlet />
     </div>

@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import UseAuth from "../../hooks/UseAuth";
 import toast from "react-hot-toast";
 import UseAxiosPublic from "../../hooks/UseAxiosPublic";
+import { useState } from "react";
 
 
 const Login = () => {
@@ -12,6 +13,27 @@ const Login = () => {
     const navigate = useNavigate();
     const axiosPublic = UseAxiosPublic();
     const from = location.state?.from?.pathName || "/";
+
+    const [credentials, setCredentials] = useState({
+      email: '',
+      password: ''
+    })
+
+    const handleCredentialFill = (role) =>{
+      if(role === 'Moderator'){
+        setCredentials({
+          email: 'sakib.dev@gmail.com ',
+          password: '12345T$'
+        })
+      }else if(role === 'Admin'){
+        setCredentials({
+          email: 'jhonkermahbub@gmail.com',
+          password: '12345T$'
+        })
+      }
+    }
+
+    console.log(credentials);
 
     const handleSignIn = (e) =>{
         e.preventDefault();
@@ -59,9 +81,16 @@ const Login = () => {
             </button>
           </div>
           <p className="text-center">Or</p>
-          <h3 className="text-center text-xl md:text-2xl font-semibold">
-            Signin with email
-          </h3>
+          <div className="flex items-center gap-4 flex-col justify-center md:flex-row">
+            <button 
+              onClick={() => handleCredentialFill('Admin')} 
+              className="bg-[#93c5fd] px-4 py-2 rounded-md">Admin Credential
+            </button>
+
+            <button 
+              onClick={() => handleCredentialFill('Moderator')} className="bg-[#93c5fd] px-4 py-2 rounded-md">Moderator Credential
+            </button>
+          </div>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Email</span>
@@ -69,6 +98,10 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              value={credentials.email}
+              onChange={(e)=>
+                setCredentials({...credentials, email: e.target.value})
+              }
               placeholder="email"
               className="input input-bordered"
             />
@@ -80,6 +113,10 @@ const Login = () => {
             <input
               type="password"
               name="password"
+              value={credentials.password}
+              onChange={(e)=>
+                setCredentials({...credentials, password: e.target.value})
+              }
               placeholder="password"
               className="input input-bordered"
             />
