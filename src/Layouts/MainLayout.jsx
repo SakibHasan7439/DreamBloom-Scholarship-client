@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../SharedComponents/Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
-const MainLayout = () => {
+const MainLayout = () => { 
     return (
         <div>
             <Navbar></Navbar>

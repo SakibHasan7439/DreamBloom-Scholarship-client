@@ -18,7 +18,9 @@ const Review = () => {
     <div className="max-w-7xl w-full mx-auto">
         <SectionTitle
             text={'our clients say'}></SectionTitle>
-      <div className="grid grid-cols-12 my-8 md:my-20 gap-4">
+      {
+        reviews == 0 ? <p className="text-xl text-center py-10">No review available</p>
+        : <div className="grid grid-cols-12 my-8 md:my-20 gap-4">
         {reviews &&
           reviews.map((review) => (
             <div
@@ -45,6 +47,7 @@ const Review = () => {
             </div>
           ))}
       </div>
+      }
     </div>
   );
 };

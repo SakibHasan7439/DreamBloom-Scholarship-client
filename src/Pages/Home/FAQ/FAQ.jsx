@@ -14,7 +14,7 @@ const FAQ = () => {
             ${isOpen ? "collapse-close" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <div className="collapse-title text-xl font-medium">
+          <div className="collapse-title text-[16px] lg:text-xl font-medium">
             Can I apply for multiple scholarships at once?
           </div>
           <div className="collapse-content">
@@ -28,7 +28,7 @@ const FAQ = () => {
             ${isOpen ? "collapse-close" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <div className="collapse-title text-xl font-medium">
+          <div className="collapse-title text-[16px] lg:text-xl font-medium">
             Who is eligible to apply for this scholarship?
           </div>
           <div className="collapse-content">
@@ -45,7 +45,7 @@ const FAQ = () => {
             ${isOpen ? "collapse-close" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <div className="collapse-title text-xl font-medium">
+          <div className="collapse-title text-[16px] lg:text-xl font-medium">
             What types of scholarships are available?
           </div>
           <div className="collapse-content">
@@ -61,7 +61,7 @@ const FAQ = () => {
             ${isOpen ? "collapse-close" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <div className="collapse-title text-xl font-medium">
+          <div className="collapse-title text-[16px] lg:text-xl font-medium">
             Is there an age limit for applicants?
           </div>
           <div className="collapse-content">

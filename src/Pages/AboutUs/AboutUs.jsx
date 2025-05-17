@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const AboutUs = () => {
     return (
-        <div style={{backgroundImage:`url(${background})`}} className="w-full h-screen bg-contain pt-8">
+        <div style={{backgroundImage:`url(${background})`}} className="w-full lg:h-screen bg-contain pt-8">
             <div className="max-w-4xl p-4 md:p-8 flex flex-col md:flex-row items-center justify-between shadow-md shadow-red-400 mx-auto h-[500px] bg-[#00000090] w-full">
                 <div>
                     <h1 className="text-red-500 font-playfair text-2xl md:text-4xl">Sakib Hasan</h1>
@@ -22,7 +22,7 @@ const AboutUs = () => {
                         </Link>
                     </div>
                 </div>
-                <img src={user} className="object-cover md:w-[40%] md:h-[80%]" alt="" />
+                <img src={user} className="object-cover md:w-[40%] md:h-[80%] w-[200px] h-[200px]" alt="" />
             </div>
         </div>
     );

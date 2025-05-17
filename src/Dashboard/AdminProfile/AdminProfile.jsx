@@ -24,13 +24,13 @@ const AdminProfile = () => {
             <h2 className="text-2xl md:text-3xl font-semibold">{role[0]}</h2>
             <h3 className="text-xl md:text-2xl">{user?.displayName}</h3>
         </div>
-      <div className="stats stats-vertical lg:ml-28 mb-6 md:mb-16 place-content-center gap-6 lg:stats-horizontal shadow">
-        <div className="stat bg-orange-400 text-white gap-4 p-6">
+      <div className="stats lg:ml-28 mb-6 md:mb-16 w-[100%] lg:w-[800px]  place-content-center gap-6 lg:stats-horizontal shadow">
+        <div className="stat bg-orange-400 text-white gap-4 p-2 md:p-6">
           <div className="stat-title text-white font-semibold">Total Scholarship</div>
           <div className="stat-value text-center">{statistics?.totalScholarship}</div>
         </div>
 
-        <div className="stat bg-blue-300 text-center font-semibold">
+        <div className="stat bg-blue-300 text-center p-2 md:p-6 font-semibold">
           <div className="stat-title">Total Application</div>
           <div className="stat-value">{statistics?.totalApplication}</div>
         </div>

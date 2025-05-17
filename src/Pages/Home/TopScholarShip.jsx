@@ -31,23 +31,26 @@ const TopScholarShip = () => {
             <div className="mb-8">
                     <Swiper slidesPerView={4}
                         breakpoints={{
-                        350: {
-                            slidesPerView: 1
+                        314: {
+                            slidesPerView: 1,
+                            spaceBetween: 10,
                         },
 
-                        414: {
-                            slidesPerView: 2
+                        425: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
                         },
 
                         640:{
-                            slidesPerView: 3
+                            slidesPerView: 3,
+                            spaceBetween: 10,
                         },
 
                         1024: {
                             slidesPerView: 4, // For larger devices
+                            spaceBetween: 20,
                         },
                         }}
-                        spaceBetween={20}
                         pagination={{
                         clickable: true,
                         }}
