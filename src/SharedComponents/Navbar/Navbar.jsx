@@ -120,12 +120,12 @@ const Navbar = () => {
                 </div>
               </div>
               <p>{user?.displayName}</p>
-              <button onClick={handleSignOut} className="px-4 py-3 rounded-md text-white bg-[#5395e0]">
+              <button onClick={handleSignOut} className="px-4 py-2 rounded-md text-white bg-[#5395e0]">
                 Logout
               </button>
             </div>
           ) : (
-            <Link to={"/login"} className="px-4 py-3 rounded-md text-white bg-[#5395e0]">
+            <Link to={"/login"} className="px-4 py-2 rounded-md text-white bg-[#5395e0]">
               Login
             </Link>
           )}

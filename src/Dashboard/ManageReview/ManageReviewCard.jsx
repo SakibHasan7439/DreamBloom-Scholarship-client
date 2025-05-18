@@ -35,20 +35,23 @@ const ManageReviewCard = ({ review, refetch }) => {
   }
 
   return (
-    <div className="p-4 col-span-12 md:col-span-6 lg:col-span-4 rounded-md bg-white shadow-md flex flex-col justify-center items-center">
-      <img
-        src={userImage}
-        className="rounded-full mx-auto w-10 h-10 md:w-28 md:h-28 my-6"
-        alt=""
-      />
-      <Rating style={{ maxWidth: 180 }} value={rating} readOnly />
-      <p>
-        <strong>{userName}</strong>
-      </p>
-      <p>{date}</p>
-      <p className="md:text-lg font-semibold">{university_name}</p>
-      <p className="text-center px-8">{comment}</p>
-      <button onClick={()=>handleSubmitDelete(_id)} className="btn bg-blue-300">Delete</button>
+    <div className="col-span-12 md:col-span-6 lg:col-span-4 relative group p-[2px] rounded-2xl bg-gradient-to-br from-[#00eeff] to-[#0099ff] hover:scale-[1.03] transition-transform duration-300 shadow-xl h-full">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#00eeff] opacity-20 rounded-full blur-2xl z-0"></div>
+      <div className="bg-white rounded-2xl h-full p-6 flex flex-col items-center text-center relative z-10 overflow-hidden">
+        <img
+              src={userImage}
+              className="relative z-10 rounded-full shadow-md border-4 border-white w-16 h-16 md:w-24 md:h-24 object-cover mb-4"
+              alt={`${userName}'s profile`}
+          />
+          <Rating style={{ maxWidth: 180 }} value={rating} readOnly />
+          <p>
+            <strong className="font-semibold text-lg text-gray-800 z-10">{userName}</strong>
+          </p>
+          <p>{date}</p>
+          <p className="font-semibold text-lg text-gray-800 z-10">{university_name}</p>
+          <p className="text-gray-600 leading-relaxed italic px-4 line-clamp-4 z-10 mb-6">{comment}</p>
+          <button onClick={()=>handleSubmitDelete(_id)} className="h-[34px] text-sm px-4 rounded-md bg-blue-300">Delete</button>
+      </div>
     </div>
   );
 };
