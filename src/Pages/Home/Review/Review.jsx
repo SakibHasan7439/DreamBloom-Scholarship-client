@@ -15,7 +15,7 @@ const Review = () => {
   console.log(reviews);
 
   return (
-    <div className="max-w-7xl w-full mx-auto">
+    <div className="max-w-7xl w-full mx-auto mb-14">
         <SectionTitle
             text={'our clients say'}></SectionTitle>
       {
